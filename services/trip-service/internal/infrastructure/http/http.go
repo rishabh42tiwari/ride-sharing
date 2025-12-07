@@ -2,6 +2,7 @@ package http
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"ride-sharing/services/trip-service/internal/domain"
 	"ride-sharing/shared/types"
@@ -12,9 +13,9 @@ type HttpHandler struct {
 }
 
 type previewTripRequest struct {
-	UserID      string  `json:"user_id"`
-	Pickup      types.Coordinate  `json:"pickup"`
-	Destination types.Coordinate  `json:"destination"`
+	UserID      string           `json:"userID"`
+	Pickup      types.Coordinate `json:"pickup"`
+	Destination types.Coordinate `json:"destination"`
 }
 
 func (s *HttpHandler) HandleTripPreview(w http.ResponseWriter, r *http.Request) {
@@ -26,17 +27,16 @@ func (s *HttpHandler) HandleTripPreview(w http.ResponseWriter, r *http.Request) 
 
 	ctx := r.Context()
 
-	t, err := s.Service.GetRoute(ctx, &reqBody.Pickup, &reqBody.Destination)
+	// CHANGE THE LAST ARG TO "FALSE" if the OSRM API is not working right now
+	t, err := s.Service.GetRoute(ctx, &reqBody.Pickup, &reqBody.Destination, true)
 	if err != nil {
-		http.Error(w, "failed to create trip", http.StatusInternalServerError)
-		return
+		log.Println(err)
 	}
-	
+
 	writeJSON(w, http.StatusOK, t)
-	
 }
 
-func writeJSON(w http.ResponseWriter, status int, data *types.OsrmApiResponse) error {
+func writeJSON(w http.ResponseWriter, status int, data any) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	return json.NewEncoder(w).Encode(data)
