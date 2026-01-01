@@ -19,7 +19,7 @@ import (
 	grpcserver "google.golang.org/grpc"
 )
 
-var GrpcAddr = ":9093"
+var GrpcAddr = env.GetString("GRPC_ADDR", ":9091")
 
 func main() {
 	// Initialize Tracing
