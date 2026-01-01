@@ -1,0 +1,26 @@
+# Kubernetes secrets - NEVER commit these
+**/secrets.yaml
+**/secret.yaml
+secrets.yaml
+secret.yaml
+
+# Environment-specific overrides
+*-local.yaml
+*-local.yml
+*.local.yaml
+*.local.yml
+
+# Terraform state files (if using Terraform)
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Helm values overrides
+values-local.yaml
+values-override.yaml
+
+# Temporary Kubernetes manifests
+temp/
+tmp/
+*.tmp.yaml

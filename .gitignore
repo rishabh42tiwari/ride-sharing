@@ -1,0 +1,64 @@
+# Binaries and build artifacts
+/build/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go workspace file
+go.work
+go.work.sum
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Kubernetes secrets
+**/secrets.yaml
+**/secret.yaml
+secrets/
+.secrets/
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Coverage and test reports
+coverage.txt
+*.cover
+*.coverprofile
+
+# Vendor directory (if using)
+vendor/
+
+# OS specific
+Thumbs.db
+.DS_Store
+
+# Tilt local state
+.tilt-cache/
+tilt_modules/
+
+# Local development overrides
+docker-compose.override.yml
+*-local.yaml
+*-local.yml

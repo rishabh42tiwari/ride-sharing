@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: app-config
+  namespace: ride-sharing-dev
 data:
   ENVIRONMENT: "development"
   JAEGER_ENDPOINT: "http://jaeger:14268/api/traces"

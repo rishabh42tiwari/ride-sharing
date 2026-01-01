@@ -1,6 +1,9 @@
 # Load the restart_process extension
 load('ext://restart_process', 'docker_build_with_restart')
 
+# Set the namespace for all Kubernetes resources
+k8s_namespace('ride-sharing-dev')
+
 ### K8s Config ###
 
 # Uncomment to use secrets
@@ -149,6 +152,6 @@ k8s_resource('payment-service', resource_deps=['payment-service-compile', 'rabbi
 ### End of Payment Service ###
 
 ### Jaeger ###
-k8s_yaml('./infra/development/k8s/jaeger.yaml')
+k8s_yaml('./infra/development/k8s/jaeger-deployment.yaml')
 k8s_resource('jaeger', port_forwards=['16686:16686', '14268:14268'], labels="tooling")
 ### End of Jaeger ###

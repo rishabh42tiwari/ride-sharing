@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payment-service
+  namespace: ride-sharing-dev
   labels:
     app: payment-service
 spec:
@@ -61,6 +62,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: payment-service
+  namespace: ride-sharing-dev
 spec:
   selector:
     app: payment-service
