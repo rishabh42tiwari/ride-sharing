@@ -19,7 +19,7 @@ chart_path = '../ride-sharing-platform/charts/ride-sharing'
 manifests = local(
     'helm template ride-sharing ../ride-sharing-platform/charts/ride-sharing ' +
     '-f ../ride-sharing-platform/charts/ride-sharing/values-dev.yaml ' +
-    '-f ../ride-sharing-platform/charts/ride-sharing/secrets-dev.yaml ' +
+    '-f ../ride-sharing-platform/charts/ride-sharing/values-secrets-dev.yaml ' +
     '--namespace ride-sharing-dev'
 )
 
