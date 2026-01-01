@@ -62,3 +62,4 @@ tilt_modules/
 docker-compose.override.yml
 *-local.yaml
 *-local.yml
+debug_manifests.yaml
