@@ -8,6 +8,8 @@ import (
 	"ride-sharing/shared/contracts"
 	"ride-sharing/shared/messaging"
 	"ride-sharing/shared/proto/driver"
+
+	"github.com/gorilla/websocket"
 )
 
 var (
@@ -51,6 +53,10 @@ func handleRidersWebSocket(w http.ResponseWriter, r *http.Request, rb *messaging
 	for {
 		_, message, err := conn.ReadMessage()
 		if err != nil {
+			if websocket.IsCloseError(err, websocket.CloseGoingAway, websocket.CloseNormalClosure) {
+				log.Printf("WebSocket closed by client: %v", err)
+				break
+			}
 			log.Printf("Error reading message: %v", err)
 			break
 		}
@@ -137,6 +143,10 @@ func handleDriversWebSocket(w http.ResponseWriter, r *http.Request, rb *messagin
 	for {
 		_, message, err := conn.ReadMessage()
 		if err != nil {
+			if websocket.IsCloseError(err, websocket.CloseGoingAway, websocket.CloseNormalClosure) {
+				log.Printf("WebSocket closed by client: %v", err)
+				break
+			}
 			log.Printf("Error reading message: %v", err)
 			break
 		}
